@@ -12,32 +12,24 @@ class AlbumScreen extends StatelessWidget {
     JsonProvider jsonProviderFalse =Provider.of<JsonProvider>(context,listen: false);
 
     return Scaffold(
-      body: Consumer<JsonProvider>(
-        builder: (context, JsonProvider, child) {
-          if (jsonProviderTrue.albumList.isEmpty) {
+      appBar: AppBar(
+        title: Text('Albums'),
+      ),
+      body:  Consumer<JsonProvider>(
+        builder: (context, commentClass, child) {
+          if (commentClass.albumList.isEmpty) {
             return Center(child: CircularProgressIndicator());
           }
           return ListView(
-            children: List.generate(
-              jsonProviderTrue.albumList.length,
-                  (index) => ListTile(
-                // id, post id
-                leading: Column(
-                  children: [
-                    Text(
-                      '${jsonProviderTrue.albumList[index].id}',
-                    ),
-                  ],
-                ),
-                // title
+            children: List.generate(jsonProviderTrue.albumList.length, (index) => ListTile(
+            title: Text('${jsonProviderTrue.albumList[index].title}'),
 
-                // body, email
+              leading:        Text('${jsonProviderTrue.albumList[index].id}'),
 
-              ),
-            ),
+            )),
           );
-        },
-      ),
+        }
+      )
     );
   }
 }

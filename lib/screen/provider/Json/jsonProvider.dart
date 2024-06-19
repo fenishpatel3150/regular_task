@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:regular_task/screen/model/alubum.dart';
 
-import 'homeProvider.dart';
+import '../../view/home/componets/homeProvider.dart';
 
 class JsonProvider extends ChangeNotifier {
       List<Album> albumList = [];
@@ -15,7 +15,7 @@ class JsonProvider extends ChangeNotifier {
 
       Future<void> getData() async {
             String json = await ApiService()
-                .callApi('https://jsonplaceholder.typicode.com/album');
+                .callApi('https://jsonplaceholder.typicode.com/albums');
             List data = await jsonDecode(json);
 
             // convert into object data
